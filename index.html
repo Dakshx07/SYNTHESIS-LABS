@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SYNTHESIS LABS | Interactive Architecture & Web Development</title>
+    <meta name="description" content="Synthesis Labs: Premium custom website and web application development agency. We build high-performance, interactive digital experiences with cutting-edge technology." />
+    <meta name="keywords" content="web development, agency, react, 3d websites, interactive design, synthesis labs, custom websites, app development" />
+    <meta name="author" content="Synthesis Labs" />
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://synthesis-labs.com/" />
+    <meta property="og:title" content="SYNTHESIS LABS | Interactive Architecture" />
+    <meta property="og:description" content="Premium custom website and web application development agency. High-performance, interactive digital experiences." />
+    <meta property="og:image" content="/og-image.png" />
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content="https://synthesis-labs.com/" />
+    <meta property="twitter:title" content="SYNTHESIS LABS | Interactive Architecture" />
+    <meta property="twitter:description" content="Premium custom website and web application development agency. High-performance, interactive digital experiences." />
+    <meta property="twitter:image" content="/og-image.png" />
+    
+    <link rel="icon" type="image/png" href="/favicon.png" />
+    
+    <!-- Tailwind -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              surface: '#000000',
+              indigo: '#6A0DAD',
+              'indigo-dim': 'rgba(106, 13, 173, 0.1)',
+              'grad-start': '#FF6B6B', // Warm Orange/Pink
+              'grad-end': '#9F6BFF',   // Cool Purple/Violet
+              grid: '#1A1A1A',
+            },
+            fontFamily: {
+              sans: ['"Space Grotesk"', 'sans-serif'],
+              mono: ['"JetBrains Mono"', 'monospace'],
+            },
+            backgroundImage: {
+              'grid-pattern': 'linear-gradient(to right, #1A1A1A 1px, transparent 1px), linear-gradient(to bottom, #1A1A1A 1px, transparent 1px)',
+              'organic-gradient': 'linear-gradient(135deg, #FF6B6B 0%, #9F6BFF 100%)',
+            }
+          }
+        }
+      }
+    </script>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+      html {
+        scroll-padding-top: 100px; /* Ensures anchor links land below the navbar */
+      }
+      body {
+        background-color: #000000;
+        color: #ffffff;
+        cursor: none; /* Hide default cursor for custom one */
+        overflow-x: hidden;
+      }
+      
+      /* Scrollbar */
+      ::-webkit-scrollbar {
+        width: 6px;
+        height: 6px;
+      }
+      ::-webkit-scrollbar-track {
+        background: #000000;
+      }
+      ::-webkit-scrollbar-thumb {
+        background: #333333;
+        border-radius: 0px;
+      }
+      ::-webkit-scrollbar-thumb:hover {
+        background: #6A0DAD;
+      }
+
+      /* Selection */
+      ::selection {
+        background: #6A0DAD;
+        color: #ffffff;
+      }
+      
+      .text-gradient {
+        background: linear-gradient(135deg, #FF6B6B, #9F6BFF);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+
+      /* Utilities for 3D transforms */
+      .perspective-1000 {
+        perspective: 1000px;
+      }
+      .transform-style-3d {
+        transform-style: preserve-3d;
+      }
+
+      @keyframes dataRain {
+        0% { transform: translateY(-100%); opacity: 0; }
+        10% { opacity: 1; }
+        90% { opacity: 1; }
+        100% { transform: translateY(100vh); opacity: 0; }
+      }
+    </style>
+  <script type="importmap">
+{
+  "imports": {
+    "lucide-react": "https://aistudiocdn.com/lucide-react@^0.555.0",
+    "framer-motion": "https://aistudiocdn.com/framer-motion@^12.23.24",
+    "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.0/",
+    "react/": "https://aistudiocdn.com/react@^19.2.0/",
+    "react": "https://aistudiocdn.com/react@^19.2.0"
+  }
+}
+</script>
+<link rel="stylesheet" href="/index.css">
+</head>
+  <body>
+    <div id="root"></div>
+  <script type="module" src="/index.tsx"></script>
+</body>
+</html>

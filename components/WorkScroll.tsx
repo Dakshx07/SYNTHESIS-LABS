@@ -55,6 +55,15 @@ const projects: Project[] = [
 
 const WorkScroll: React.FC = () => {
   const targetRef = useRef<HTMLDivElement>(null);
+  const [isMobile, setIsMobile] = React.useState(false);
+
+  React.useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth < 768);
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
   const { scrollYProgress } = useScroll({
     target: targetRef,
   });
@@ -66,19 +75,19 @@ const WorkScroll: React.FC = () => {
     <motion.section
       id="archive"
       ref={targetRef}
-      className="relative h-[300vh] bg-black text-white"
+      className="relative h-auto md:h-[300vh] bg-black text-white"
       initial={{ opacity: 0, x: 100 }}
       whileInView={{ opacity: 1, x: 0 }}
       viewport={{ once: true, margin: "-10%" }}
       transition={{ duration: 1, ease: "easeOut" }}
     >
-      <div className="sticky top-0 flex h-screen items-center overflow-hidden border-t border-b border-white/5 bg-black">
+      <div className="relative md:sticky top-0 flex flex-col md:flex-row h-auto md:h-screen items-center overflow-hidden border-t border-b border-white/5 bg-black py-12 md:py-0">
 
         {/* Background Grid */}
         <div className="absolute inset-0 bg-[linear-gradient(rgba(106,13,173,0.05)_1px,transparent_1px),linear-gradient(90deg,rgba(106,13,173,0.05)_1px,transparent_1px)] bg-[size:60px_60px] pointer-events-none" />
 
         {/* Section Label */}
-        <div className="absolute top-8 left-8 md:top-12 md:left-12 z-20 mix-blend-screen pointer-events-none">
+        <div className="relative md:absolute top-0 md:top-12 left-0 md:left-12 z-20 mix-blend-screen pointer-events-none mb-12 md:mb-0 px-6 md:px-0 w-full md:w-auto">
           <div className="flex items-center gap-2 mb-2">
             <Terminal size={12} className="text-indigo animate-pulse drop-shadow-[0_0_8px_rgba(51,255,0,0.5)] text-[#33FF00]" />
             <span className="font-mono text-indigo text-xs tracking-widest drop-shadow-[0_0_8px_rgba(51,255,0,0.5)] text-[#33FF00]">DEPLOYED_UNITS</span>
@@ -92,15 +101,18 @@ const WorkScroll: React.FC = () => {
           <span className="font-mono text-[10px] text-white/50 tracking-widest animate-pulse">SCROLL_HORIZONTAL</span>
         </div>
 
-        <motion.div style={{ x }} className="flex gap-8 px-12 md:px-24 w-max h-full items-center">
+        <motion.div
+          style={{ x: isMobile ? 0 : x }}
+          className="flex flex-col md:flex-row gap-8 px-6 md:px-24 w-full md:w-max h-auto md:h-full items-center"
+        >
 
           {/* Intro Spacer */}
-          <div className="w-[10vw] flex-shrink-0" />
+          <div className="hidden md:block w-[10vw] flex-shrink-0" />
 
           {projects.map((project) => (
             <div
               key={project.id}
-              className="group relative w-[85vw] md:w-[45vw] flex-shrink-0 bg-black/40 border border-white/10 overflow-hidden rounded-md backdrop-blur-sm transition-all duration-500 hover:border-indigo/50 hover:bg-black/80 hover:shadow-[0_0_50px_rgba(106,13,173,0.1)]"
+              className="group relative w-full md:w-[45vw] flex-shrink-0 bg-black/40 border border-white/10 overflow-hidden rounded-md backdrop-blur-sm transition-all duration-500 hover:border-indigo/50 hover:bg-black/80 hover:shadow-[0_0_50px_rgba(106,13,173,0.1)]"
             >
               {/* Header Bar */}
               <div className="flex justify-between items-center p-4 border-b border-white/10 bg-white/5">
